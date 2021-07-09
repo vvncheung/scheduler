@@ -7,7 +7,6 @@ import DayList from "components/DayList.js";
 import Appointment from "components/Appointment";
 import { getAppointmentsForDay, getInterview } from "components/helpers/selectors";
 
-
 export default function Application(props) {
 
   const setDay = day => setState({ ...state, day });
