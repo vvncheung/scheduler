@@ -1,4 +1,4 @@
-export default function getAppointmentsForDay(state, day) {
+const getAppointmentsForDay = function(state, day) {
  
   let appointmentsThatDay = [];
   if(state.days.length  === 0) {
@@ -23,4 +23,24 @@ export default function getAppointmentsForDay(state, day) {
   })
 
   return appointmentsThatDay;
+};
+
+const getInterview = function(state, interview) {
+ 
+  if (!interview) {
+    return null;
+  }
+
+  const interviewerObj = state.interviewers[interview.interviewer];
+  
+  return {
+    student: interview.student,
+    interviewer: interviewerObj
+  }
+
+}
+
+module.exports = {
+  getAppointmentsForDay,
+  getInterview
 }
