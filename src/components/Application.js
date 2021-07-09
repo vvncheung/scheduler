@@ -61,15 +61,20 @@ const appointments = [
   },
 ];
 
-const [days, setDays] = useState([]);
 
 export default function Application(props) {
-
-  useEffect(() => {
-    axios.get = ''
-}, [])
-
+  
+  const [days, setDays] = useState([]);
   const [day, setDay] = useState("Monday");
+  
+  useEffect(() => {
+    const dataURL = 'http://localhost:8001/api/days'
+    axios.get(dataURL).then(response => {
+      setDays(response.data)
+      })
+      .catch(err => console.log(err))
+  }, []);
+
 
   const mapOverAppointmentsArray = appointments.map((appointment) => {
     return ( 
