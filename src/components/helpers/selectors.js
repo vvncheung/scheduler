@@ -25,6 +25,33 @@ const getAppointmentsForDay = function(state, day) {
   return appointmentsThatDay;
 };
 
+const getInterviewersForDay = function(state, day) {
+ 
+  let interviewersThatDay = [];
+  if(state.days.length  === 0) {
+    return interviewersThatDay;
+  }
+
+  const currentDay = state.days.filter((dayObj) => {
+    if (day === dayObj.name) {
+      return true;
+    }
+    return false; 
+  });
+
+  if(currentDay.length  === 0) {
+    return interviewersThatDay;
+  }
+
+  interviewersThatDay = currentDay[0].interviewers.map((id) => {
+    if (id === state.interviewers[id].id) {
+      return state.interviewers[id];
+    }
+  })
+
+  return interviewersThatDay;
+};
+
 const getInterview = function(state, interview) {
  
   if (!interview) {
@@ -42,5 +69,6 @@ const getInterview = function(state, interview) {
 
 module.exports = {
   getAppointmentsForDay,
+  getInterviewersForDay,
   getInterview
 }
