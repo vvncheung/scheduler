@@ -17,7 +17,6 @@ export default function Form(props){
     props.onCancel();
   }
 
-
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -26,10 +25,10 @@ export default function Form(props){
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            placeholder="Enter Student Name"
             onChange={(event) => {
               setName(event.target.value)}}
             value={name}
+            placeholder="Enter Student Name"
             onSubmit={event => event.preventDefault()}
             /*
               This must be a controlled component
