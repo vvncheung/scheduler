@@ -20,6 +20,7 @@ const getAppointmentsForDay = function(state, day) {
     if (id === state.appointments[id].id) {
       return state.appointments[id];
     }
+    return id;
   })
 
   return appointmentsThatDay;
@@ -47,6 +48,7 @@ const getInterviewersForDay = function(state, day) {
     if (id === state.interviewers[id].id) {
       return state.interviewers[id];
     }
+    return id;
   })
 
   return interviewersThatDay;
