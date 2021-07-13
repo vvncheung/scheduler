@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InterviewerList from '../InterviewerList'
 import Button from '../Button'
 
@@ -6,6 +6,11 @@ export default function Form(props){
   
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [saveDisabled, setDisabled] = useState(true);
+
+  useEffect(()=> { 
+    name && interviewer && setDisabled(false);
+  }, [name, interviewer])
 
   const reset = () => {
     setName("");
@@ -40,7 +45,7 @@ export default function Form(props){
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick ={(event)=> props.onSave(name, interviewer)}>Save</Button>        </section>
+          <Button confirm onClick={(event)=> props.onSave(name, interviewer)} disabled={saveDisabled}>Save</Button>        </section>
       </section>
     </main>
   )
