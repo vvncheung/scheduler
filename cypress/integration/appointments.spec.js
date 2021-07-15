@@ -47,6 +47,7 @@ describe("Appointments", () => {
   })
 
   it("should cancel an interview", () => {
+    
     cy.get("[alt=Delete]")
     .click({
       force: true,
