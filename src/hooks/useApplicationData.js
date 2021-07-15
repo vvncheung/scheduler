@@ -35,8 +35,6 @@ export default function useApplicationData(props) {
     state.days = [...incomingState.days];
     state.days[currentDayIndex] = updatedDayObj;
 
-    console.log(state)
-
     return state;
   }
 

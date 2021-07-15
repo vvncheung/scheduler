@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import InterviewerList from '../InterviewerList'
 import Button from '../Button'
 
@@ -48,7 +48,7 @@ export default function Form(props){
             */
           />
         </form>
-        <section className="appointment__validation">{error}</section>
+      <section className="appointment__validation">{error}</section>
         <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
       </section>
       <section className="appointment__card-right">
