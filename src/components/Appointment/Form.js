@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react';
 import InterviewerList from '../InterviewerList'
 import Button from '../Button'
 
+
 export default function Form(props){
   
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  const [saveDisabled, setDisabled] = useState(true);
-
-  useEffect(()=> { 
-    name && interviewer && setDisabled(false);
-  }, [name, interviewer])
+  const [error, setError] = useState("");
 
   const reset = () => {
     setName("");
@@ -20,6 +17,16 @@ export default function Form(props){
   const cancel = () => {
     reset();
     props.onCancel();
+  }
+
+  const validate = () => {
+    if (name === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+  
+    setError("");
+    props.onSave(name, interviewer);
   }
 
   return (
@@ -35,17 +42,20 @@ export default function Form(props){
             value={name}
             placeholder="Enter Student Name"
             onSubmit={event => event.preventDefault()}
+            data-testid="student-name-input" 
             /*
               This must be a controlled component
             */
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={(event)=> props.onSave(name, interviewer)} disabled={saveDisabled}>Save</Button>        </section>
+          <Button confirm onClick={(event)=> validate()}>Save</Button>        
+          </section>
       </section>
     </main>
   )
